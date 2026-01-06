@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AniFlow Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #020617; /* Very Dark Slate */
+        color: #e2e8f0;
+        background-image: 
+          linear-gradient(rgba(30, 41, 59, 0.3) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
+        background-size: 40px 40px;
+        min-height: 100vh;
+      }
+      /* Subtle vignette */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 0%, #020617 100%);
+        pointer-events: none;
+        z-index: -1;
+      }
+      
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      /* Custom scrollbar for cyberpunk feel */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0f172a; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #334155; 
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #475569; 
+      }
+      
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      /* --- Cinematic Camera Animations --- */
+      
+      /* Base setting for smoother scaling */
+      .cinematic-layer {
+        will-change: transform;
+        transform-origin: center center;
+      }
+
+      @keyframes cam-zoom-in {
+        from { transform: scale(1); }
+        to { transform: scale(1.3); }
+      }
+      
+      @keyframes cam-zoom-out {
+        from { transform: scale(1.3); }
+        to { transform: scale(1); }
+      }
+
+      @keyframes cam-pan-left {
+        from { transform: scale(1.2) translateX(0%); }
+        to { transform: scale(1.2) translateX(-10%); }
+      }
+
+      @keyframes cam-pan-right {
+        from { transform: scale(1.2) translateX(0%); }
+        to { transform: scale(1.2) translateX(10%); }
+      }
+
+      @keyframes cam-tracking {
+        0% { transform: scale(1.1) translateX(-2%); }
+        50% { transform: scale(1.1) translateX(2%); }
+        100% { transform: scale(1.1) translateX(-2%); }
+      }
+
+      @keyframes cam-shake {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        10% { transform: translate(-1px, -2px) rotate(-1deg); }
+        20% { transform: translate(-3px, 0px) rotate(1deg); }
+        30% { transform: translate(3px, 2px) rotate(0deg); }
+        40% { transform: translate(1px, -1px) rotate(1deg); }
+        50% { transform: translate(-1px, 2px) rotate(-1deg); }
+        60% { transform: translate(-3px, 1px) rotate(0deg); }
+        70% { transform: translate(3px, 1px) rotate(-1deg); }
+        80% { transform: translate(-1px, -1px) rotate(1deg); }
+        90% { transform: translate(1px, 2px) rotate(0deg); }
+        100% { transform: translate(1px, -2px) rotate(-1deg); }
+      }
+
+      .anim-Zoom-In { animation-name: cam-zoom-in; animation-timing-function: ease-out; animation-fill-mode: forwards; }
+      .anim-Zoom-Out { animation-name: cam-zoom-out; animation-timing-function: ease-out; animation-fill-mode: forwards; }
+      .anim-Pan-Left { animation-name: cam-pan-left; animation-timing-function: linear; animation-fill-mode: forwards; }
+      .anim-Pan-Right { animation-name: cam-pan-right; animation-timing-function: linear; animation-fill-mode: forwards; }
+      .anim-Tracking { animation-name: cam-tracking; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+      .anim-Shake { animation-name: cam-shake; animation-duration: 0.5s !important; animation-iteration-count: infinite; }
+      .anim-Static { transform: scale(1); }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

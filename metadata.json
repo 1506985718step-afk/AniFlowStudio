@@ -1,0 +1,5 @@
+{
+  "name": "AniFlow Studio",
+  "description": "A professional AI-powered anime automation dashboard. Features script generation via Gemini, storyboard visualization, and production pipeline management.",
+  "requestFramePermissions": []
+}
